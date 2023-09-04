@@ -56,13 +56,6 @@
     flex-direction: column;
 }
 
-@media (min-width: 768px) {
-    .genre-container {
-        padding-left: 64px;
-        padding-right: 64px;
-    }
-}
-
 
 @media (min-width: 768px) {
     .App {
@@ -72,5 +65,10 @@
     .App-logo {
         height: 640px;
         pointer-events: none;
+    }
+
+    .genre-container {
+        padding-left: 64px;
+        padding-right: 64px;
     }
 }
