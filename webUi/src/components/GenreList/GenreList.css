@@ -1,0 +1,112 @@
+.border-bottom {
+    border-bottom: 2px solid currentColor;
+}
+
+.default-tab {
+    padding: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+    outline: none;
+}
+
+.default-tab:hover {
+    color: var(--primary-color);
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    overflow-x: hidden;
+}
+
+.tab-button {
+    padding: 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.tab-button:hover {
+    color: var(--primary-color);
+}
+
+.selected-tab {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.cursor-default {
+    cursor: default;
+}
+
+.space-elem {
+    cursor: default;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border-bottom: 2px solid currentColor;
+}
+
+.sort-label {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+    white-space: nowrap;
+    letter-spacing: 0.89px;
+    text-transform: uppercase;
+    border-color: rgba(255, 255, 255);
+    padding: 4px;
+}
+
+.select-box {
+    position: relative !important;
+    display: flex;
+}
+
+.select-box select {
+    padding: 4px;
+    padding-right: 16px;
+    outline: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    appearance: none;
+    width: auto;
+    background-color: transparent;
+    background-color: var(--gray-light);
+    border-bottom: 2px solid transparent;
+    font-weight: 500;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    border: none;
+    font-family: 'Montserrat', system-ui;
+    font-size: 16px;
+}
+
+@media (min-width: 768px) {
+    .select-box select {
+        padding: 20px;
+    }
+
+    .sort-label {
+        padding: 20px;
+    }
+
+    .default-tab {
+        padding: 20px;
+    }
+}
+
+.select-arrow-custom {
+    pointer-events: none;
+    position: relative;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    color: var(--primary-color);
+}
+
+.arrow-down {
+    fill: currentColor;
+    width: 12px;
+    height: 12px;
+}
