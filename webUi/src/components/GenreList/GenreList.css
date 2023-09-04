@@ -58,8 +58,8 @@
 }
 
 .select-box {
-    position: relative !important;
-    display: flex;
+    position: relative;
+    cursor: pointer;
 }
 
 .select-box select {
@@ -70,13 +70,10 @@
     text-transform: uppercase;
     appearance: none;
     width: auto;
-    background-color: transparent;
     background-color: var(--gray-light);
     border-bottom: 2px solid transparent;
     font-weight: 500;
-    outline: none;
     white-space: nowrap;
-    cursor: pointer;
     border: none;
     font-family: 'Montserrat', system-ui;
     font-size: 16px;
@@ -98,7 +95,10 @@
 
 .select-arrow-custom {
     pointer-events: none;
-    position: relative;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: -8px;
     padding: 0 8px;
     display: flex;
     align-items: center;
@@ -106,7 +106,6 @@
 }
 
 .arrow-down {
-    fill: currentColor;
     width: 12px;
     height: 12px;
 }
