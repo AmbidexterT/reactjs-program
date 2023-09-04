@@ -11,12 +11,17 @@
 }
 
 .search-container {
-    margin: 44px 64px;
+    margin: 8px;
 }
 
 @media (min-width: 768px) {
     .search-container {
-        margin: 8px;
+        margin: 44px 64px;
+    }
+
+    .search-header {
+        padding-left: 64px;
+        padding-right: 64px;
     }
 }
 
