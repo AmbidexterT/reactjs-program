@@ -1,0 +1,60 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100vh;
+    outline: none;
+    background-color: #888888;
+    font-family: 'Montserrat', system-ui;
+}
+
+#root {
+    --primary-color: #F65261;
+    --white-color: #FFFFFF;
+    --gray-light: #232323;
+    --gray-dark: #323232;
+    --gray: #424242;
+
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+main {
+    flex: 1
+}
+
+.bg-gray-dark {
+    background-color: var(--gray-dark);
+    opacity: 0.8;
+}
+
+.bg-gray-light {
+    background-color: var(--gray-light);
+    opacity: 0.68;
+}
+
+.color-white {
+    color: var(--white-color);
+}
+
+.color-red {
+    color: var(--primary-color)
+}
+
+.bg-color-red {
+    background-color: var(--primary-color)
+}
+
+.border-primary {
+    border-color: var(--primary-color)
+}
+
+.text-primary {
+    color: var(--primary-color)
+}
+
+.text-white {
+    color: var(--white-color);
+}
