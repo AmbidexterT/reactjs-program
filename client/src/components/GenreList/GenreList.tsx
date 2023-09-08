@@ -1,6 +1,6 @@
-import React, {HTMLAttributes} from 'react';
+import React, { ChangeEvent } from 'react';
 import cx from 'classnames';
-import { ReactComponent as ArrowDown }  from '../../assets/icons/arrowDown.svg';
+import { ReactComponent as ArrowDown } from '../../assets/icons/arrowDown.svg';
 import './GenreList.css';
 
 const defaultTabClassName =
@@ -18,10 +18,11 @@ interface GenreListProps {
     onSelect: (e: string) => void;
 }
 
-const GenreList = ({genreNames, selectedGenre, onSelect}: GenreListProps) => {
+const GenreList = ({ genreNames, selectedGenre, onSelect }: GenreListProps) => {
     const sortByValue = 'genres';
 
-    const onSortChange = (event: any) => {
+    const onSortChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        console.log('sort changed', event)
     };
 
     const onFilterClick = (genreName: string) => {

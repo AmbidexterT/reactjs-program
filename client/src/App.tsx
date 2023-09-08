@@ -5,7 +5,7 @@ import GenreList from './components/GenreList/GenreList';
 import './styles/styles.css';
 import './App.css';
 
-function App() {
+function App () {
     const handleSearch = (query: string) => {
         console.log('Search query:', query);
     };
