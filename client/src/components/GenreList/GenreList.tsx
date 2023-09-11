@@ -12,7 +12,7 @@ const sortOptions = [
     { name: 'Release date', value: 'release_date' },
 ];
 
-interface GenreListProps {
+export interface GenreListProps {
     genreNames: string[];
     selectedGenre: string;
     onSelect: (e: string) => void;
