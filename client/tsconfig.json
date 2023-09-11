@@ -23,7 +23,7 @@
     "include": [
         "src",
         "src/custom.d.ts"
-, "../GenreList.spec.tsx"    ],
+    ],
     "exclude": [
         "./node_modules/**/*"
     ]
