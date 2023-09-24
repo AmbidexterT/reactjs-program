@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, ReactElement } from 'react';
 
 interface StateCounter {
   value: number;
@@ -9,7 +9,7 @@ interface CounterProps {
 }
 
 class Counter extends Component<CounterProps, StateCounter> {
-  constructor (props: CounterProps) {
+  constructor(props: CounterProps) {
     super(props);
     this.state = {
       value: props.initialValue || 0,
@@ -24,10 +24,12 @@ class Counter extends Component<CounterProps, StateCounter> {
     this.setState((prevState: StateCounter) => ({ value: prevState.value + 1 }));
   };
 
-  render () {
+  render() {
+    const valueElement: ReactElement = React.createElement('span', { id: 'counterValue' }, this.state.value.toString());
+
     return React.createElement('div', null,
       React.createElement('h2', null, 'Counter'),
-      React.createElement('p', null, `Value: ${this.state.value}`),
+      React.createElement('p', null, 'Value: ', valueElement),
       React.createElement('button', { onClick: this.decrement }, 'Decrement'),
       React.createElement('button', { onClick: this.increment }, 'Increment')
     );
