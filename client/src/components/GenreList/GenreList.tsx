@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import cx from 'classnames';
-import ArrowDown from '../../assets/icons/arrowDown.svg';
-import useQuery from '../../hooks/useQuery';
+import { ReactComponent as ArrowDown } from '../../assets/icons/arrowDown.svg';
 import './GenreList.css';
 
 const defaultTabClassName =
@@ -13,19 +12,26 @@ const sortOptions = [
     { name: 'Release date', value: 'release_date' },
 ];
 
-const GenreList = ({ className, genreNames, selectedGenre, onSelect }) => {
+export interface GenreListProps {
+    genreNames: string[];
+    selectedGenre: string;
+    onSelect: (e: string) => void;
+}
+
+const GenreList = ({ genreNames, selectedGenre, onSelect }: GenreListProps) => {
     const sortByValue = 'genres';
 
-    const onSortChange = (event) => {
+    const onSortChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        console.log('sort changed', event)
     };
 
-    const onFilterClick = (genreName) => {
+    const onFilterClick = (genreName: string) => {
         onSelect(genreName);
     };
 
     return (
-        <nav className={cx('flex-container', className)}>
-            {genreNames.map((genreName) => (
+        <nav className={cx('flex-container')}>
+            {genreNames.map((genreName: string) => (
                 <span
                     key={genreName}
                     className={cx(defaultTabClassName, {
@@ -54,7 +60,7 @@ const GenreList = ({ className, genreNames, selectedGenre, onSelect }) => {
                     ))}
                 </select>
                 <div className="select-arrow-custom">
-                    <img src={ArrowDown} className="arrow-down" />
+                    <ArrowDown className="arrow-down" />
                 </div>
             </div>
         </nav>

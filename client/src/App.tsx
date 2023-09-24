@@ -5,14 +5,14 @@ import GenreList from './components/GenreList/GenreList';
 import './styles/styles.css';
 import './App.css';
 
-function App() {
-    const handleSearch = (query) => {
+function App () {
+    const handleSearch = (query: string) => {
         console.log('Search query:', query);
     };
 
     const [selectedGenre, setSelectedGenre] = useState('All');
 
-    const handleGenreSelect = (genreName) => {
+    const handleGenreSelect = (genreName: string) => {
         setSelectedGenre(genreName);
         console.log('Selected genre:', genreName);
     };

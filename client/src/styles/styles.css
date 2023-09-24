@@ -6,6 +6,7 @@ body {
     outline: none;
     background-color: #888888;
     font-family: 'Montserrat', system-ui;
+    margin: 0px;
 }
 
 #root {
