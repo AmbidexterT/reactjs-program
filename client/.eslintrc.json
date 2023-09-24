@@ -13,27 +13,50 @@
     },
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx", ".json"]
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx",
+          ".json"
+        ]
       }
     }
   },
-  "plugins": ["@typescript-eslint", "react-hooks"],
+  "plugins": [
+    "@typescript-eslint",
+    "react-hooks"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:storybook/recommended"
   ],
   "rules": {
     "semi": 0,
     "react/jsx-indent": "off",
     "indent": "off",
-    "max-len": [2, 120, 2],
+    "max-len": [
+      2,
+      120,
+      2
+    ],
     "no-console": "warn",
-    "comma-dangle": ["off", "never"],
+    "comma-dangle": [
+      "off",
+      "never"
+    ],
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [".js", ".jsx", ".ts", ".tsx", ".css"]
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx",
+          ".css"
+        ]
       }
     ],
     "react/no-set-state": "off",

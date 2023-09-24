@@ -1,42 +1,46 @@
-import React, { useState, HTMLAttributes, ChangeEvent, FormEventHandler } from 'react';
-import './SearchBar.css';
+import React, { HTMLAttributes, useState } from 'react';
+import Button from 'components/Button/Button';
+import MovieFormModal from 'components/Modals/MovieFormModal';
 
-interface SearchHeaderProps extends HTMLAttributes<HTMLDivElement> {
-    initialQuery: string;
-    onSearch: (e: string) => void;
-}
+const SearchHeader = ({ className = '', ...rest }: HTMLAttributes<HTMLDivElement>) => {
+  const [searchValue, setSearchValue] = useState('');
+  const [isMovieFormModalOpen, setIsMovieFormModalOpen] = useState(false);
 
-function SearchBar ({ initialQuery, onSearch }: SearchHeaderProps) {
-    const [query, setQuery] = useState(initialQuery || '');
+  const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (searchValue) alert(`Looking for: ${searchValue}`);
+  };
 
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setQuery(event.target.value);
-    };
+  const openAddMovie = () => setIsMovieFormModalOpen(true);
+  const closeAddMovie = () => setIsMovieFormModalOpen(false);
 
-    const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
-        event.preventDefault();
-        onSearch(query);
-    };
+  return (
+    <header className={`flex-col h-96 bg-header py-5 px-16 text-white bg-cover ${className}`} {...rest}>
+      <MovieFormModal isOpen={isMovieFormModalOpen} onClose={closeAddMovie} title="Add movie" />
+      <div className="flex w-full justify-between items-start">
+        <Button title="+ ADD MOVIE" variant="secondary" size="small" onClick={openAddMovie} />
+      </div>
+      <div className="flex-col mx-16 my-11">
+        <label className="flex text-5xl">FIND YOUR MOVIE</label>
+        <form className="flex mt-9">
+          <input
+            className="flex rounded p-4 text-lg w-full bg-gray80 opacity-60 focus:outline-none"
+            name="search"
+            onInput={(e) => setSearchValue(e.currentTarget.value)}
+            placeholder="What do you want to watch?"
+          />
+          <Button
+            className="flex ml-2 uppercase"
+            title="Search"
+            variant="primary"
+            type="submit"
+            size="large"
+            onClick={onSubmit}
+          />
+        </form>
+      </div>
+    </header>
+  );
+};
 
-    return (
-        <header className="search-header">
-            <form onSubmit={handleSubmit}>
-                <div className="search-container">
-                    <label className="search-label text-white">FIND YOUR MOVIE</label>
-                    <div className="search-bar-content">
-                        <input
-                            type="text"
-                            className="search-input bg-gray-dark text-white"
-                            value={query}
-                            placeholder="What do you want to watch?"
-                            onChange={handleInputChange}
-                        />
-                        <button type="submit" className="search-button bg-color-red text-white">Search</button>
-                    </div>
-                </div>
-            </form>
-        </header>
-    );
-}
-
-export default SearchBar;
+export default SearchHeader;

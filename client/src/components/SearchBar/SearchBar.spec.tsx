@@ -9,7 +9,7 @@ let mockOnSearch: jest.Mock<void, [string]>;
 
 beforeEach(() => {
   mockOnSearch = jest.fn();
-  const { getByTestId } = render(<SearchBar initialQuery="" onSearch={mockOnSearch} />);
+  const { getByTestId } = render(<SearchBar />);
   inputElement = getByTestId('search-input') as HTMLInputElement;
 });
 

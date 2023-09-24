@@ -19,7 +19,7 @@ test('highlights a selected genre passed in props', () => {
   const selectedGenreElement = getByText(selectedGenre);
 
   expect(selectedGenreElement).toHaveClass('border-primary text-primary');
-  expect(selectedGenreElement).not.toHaveClass('text-white');
+  expect(selectedGenreElement).not.toHaveClass('white-text');
 });
 
 test('after a click event on a genre button, calls "onChange" callback with correct genre', () => {
