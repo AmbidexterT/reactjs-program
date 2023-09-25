@@ -1,9 +1,9 @@
 import React from 'react';
-import Input from 'components/Input';
+import Input from 'components/Input/Input';
 import SelectInput from 'components/SelectInput';
 import Button from 'components/Button/Button';
 import Movie from 'types/Movie';
-import { genres } from '../mocks/data';
+import { genres } from '../../mocks/data';
 
 interface MovieFormProps {
   movie?: Movie;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import FormOfMovie from 'components/MovieForm';
+import FormOfMovie from 'components/MovieForm/MovieForm';
 
 export default {
   title: 'Components',

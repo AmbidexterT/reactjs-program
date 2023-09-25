@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SearchBar from 'components/SearchBar/SearchBar';
 import Content from 'layout/Content';
-import MovieDetailsHeader from 'layout/MovieDetailsHeader';
+import MovieDetailsHeader from 'layout/MovieDetailsHeader/MovieDetailsHeader';
 import MovieFormModal from 'components/Modals/MovieFormModal';
 import Movie from 'types/Movie';
 

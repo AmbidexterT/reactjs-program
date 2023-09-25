@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import MovieCard from 'components/MovieCard';
+import MovieCard from 'components/MovieCard/MovieCard';
 import movieImageSrc from 'assets/images/movie1.png';
 
 export default {

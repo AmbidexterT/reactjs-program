@@ -1,5 +1,5 @@
 import React from 'react';
-import Landing from 'layout/Landing';
+import Landing from 'layout/Landing/Landing';
 import Modal from 'containers/Modal';
 
 interface Props {

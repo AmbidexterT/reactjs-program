@@ -19,7 +19,7 @@ const MovieDetailsHeader = ({ onSearchClick, movie, className = '', ...rest }: M
     <header className={`flex-col bg-content py-5 px-16 text-white  ${className}`} {...rest}>
       <div className="flex w-full justify-between items-center">
         <span className="ml-auto">
-          <SearchButton className="cursor-pointer" onClick={onSearchClick} />
+          <SearchButton className="cursor-pointer" onClick={onSearchClick} data-testid={'search-button'}/>
         </span>
       </div>
       <div className="flex pt-6">

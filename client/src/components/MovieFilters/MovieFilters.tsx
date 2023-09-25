@@ -1,7 +1,7 @@
 import React, { HTMLAttributes } from 'react';
 import cx from 'classnames';
 import { ReactComponent as ArrowDown } from 'assets/icons/arrowDown.svg';
-import { genres } from '../mocks/data';
+import { genres } from '../../mocks/data';
 
 const defaultTabClassName =
   'text-white p-5 cursor-pointer hover:text-primary focus:outline-none uppercase font-medium border-b-2';

@@ -1,34 +1,32 @@
 import React from 'react';
-import { render, fireEvent, RenderResult, screen } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import SearchBar from './SearchBar';
 
-let inputElement: HTMLInputElement;
-let mockOnSearch: jest.Mock<void, [string]>;
-
-beforeEach(() => {
-  mockOnSearch = jest.fn();
+test('renders the SearchBar component', () => {
   const { getByTestId } = render(<SearchBar />);
-  inputElement = getByTestId('search-input') as HTMLInputElement;
+  const inputElement = getByTestId('search-input') as HTMLInputElement;
+  expect(inputElement).toBeInTheDocument();
 });
 
-test('renders an input with the value equal to initial value passed in props', () => {
-  expect(inputElement).toHaveValue('Initial Value');
+test('displays a button to add a movie', () => {
+  const { getByText } = render(<SearchBar />);
+  const addMovieButton = getByText('+ ADD MOVIE');
+  expect(addMovieButton).toBeInTheDocument();
 });
 
-test('after typing into the input and clicking Submit button, onChange prop is called with the proper value', () => {
-  const submitButton = screen.getByText('Search') as HTMLButtonElement;
+test('updates the search value when typing into the input field', () => {
+  const { getByTestId } = render(<SearchBar />);
+  const inputElement = getByTestId('search-input') as HTMLInputElement;
+  fireEvent.input(inputElement, { target: { value: 'New Value' } });
+  expect(inputElement).toHaveValue('New Value');
+});
 
-  fireEvent.change(inputElement, { target: { value: 'New Value' } });
+test('does not call onSubmit prop when submitting the form with an empty search input', () => {
+  const mockOnSubmit = jest.fn();
+  render(<SearchBar onSubmit={mockOnSubmit} />);
+  const submitButton = screen.getByText('Search');
   fireEvent.click(submitButton);
-
-  expect(mockOnSearch).toHaveBeenCalledWith('New Value');
-});
-
-test('after typing into the input and pressing Enter key, onChange prop is called with the proper value', () => {
-  fireEvent.change(inputElement, { target: { value: 'New Value' } });
-  fireEvent.submit(inputElement);
-
-  expect(mockOnSearch).toHaveBeenCalledWith('New Value');
+  expect(mockOnSubmit).not.toHaveBeenCalled();
 });

@@ -1,5 +1,5 @@
 import React, { HTMLAttributes, useState } from 'react';
-import MovieCard from 'components/MovieCard';
+import MovieCard from 'components/MovieCard/MovieCard';
 import GenreList from 'components/GenreList/GenreList';
 import Movie from 'types/Movie';
 import { fakeMovieData, genres } from '../mocks/data';

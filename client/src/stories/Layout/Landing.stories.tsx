@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import Landing from 'layout/Landing';
+import Landing from 'layout/Landing/Landing';
 
 export default {
   title: 'Components/Layout',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import MovieFilters from 'components/MovieFilters';
+import MovieFilters from 'components/MovieFilters/MovieFilters';
 
 export default {
   title: 'Components',

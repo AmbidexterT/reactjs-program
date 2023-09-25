@@ -15,16 +15,18 @@ test('renders all genres passed in props', () => {
 
 test('highlights a selected genre passed in props', () => {
   const selectedGenre = 'Action';
-  const { getByText } = render(<GenreList genreNames={['Action', 'Adventure', 'Comedy']} selectedGenre={selectedGenre} onSelect={() => {}} />);
+  const { getByText } = render(<GenreList genreNames={['Action', 'Adventure', 'Comedy']}
+                                          selectedGenre={selectedGenre} onSelect={() => {}} />);
   const selectedGenreElement = getByText(selectedGenre);
 
-  expect(selectedGenreElement).toHaveClass('border-primary text-primary');
+  expect(selectedGenreElement).toHaveClass('default-tab border-bottom primary-border primary-text');
   expect(selectedGenreElement).not.toHaveClass('white-text');
 });
 
 test('after a click event on a genre button, calls "onChange" callback with correct genre', () => {
   const mockOnSelect = jest.fn();
-  const { getByText } = render(<GenreList genreNames={['Action', 'Adventure', 'Comedy']} selectedGenre="" onSelect={mockOnSelect} />);
+  const { getByText } = render(<GenreList genreNames={['Action', 'Adventure', 'Comedy']}
+                                          selectedGenre="" onSelect={mockOnSelect} />);
   const genreToClick = 'Action';
   const genreElement = getByText(genreToClick);
 

@@ -2,7 +2,7 @@ import React, { HTMLAttributes, useState } from 'react';
 import Button from 'components/Button/Button';
 import MovieFormModal from 'components/Modals/MovieFormModal';
 
-const SearchHeader = ({ className = '', ...rest }: HTMLAttributes<HTMLDivElement>) => {
+const SearchBar = ({ className = '', ...rest }: HTMLAttributes<HTMLDivElement>) => {
   const [searchValue, setSearchValue] = useState('');
   const [isMovieFormModalOpen, setIsMovieFormModalOpen] = useState(false);
 
@@ -24,12 +24,14 @@ const SearchHeader = ({ className = '', ...rest }: HTMLAttributes<HTMLDivElement
         <label className="flex text-5xl">FIND YOUR MOVIE</label>
         <form className="flex mt-9">
           <input
+            data-testid={'search-input'}
             className="flex rounded p-4 text-lg w-full bg-gray80 opacity-60 focus:outline-none"
             name="search"
             onInput={(e) => setSearchValue(e.currentTarget.value)}
             placeholder="What do you want to watch?"
           />
           <Button
+            data-testid={'search-button'}
             className="flex ml-2 uppercase"
             title="Search"
             variant="primary"
@@ -43,4 +45,4 @@ const SearchHeader = ({ className = '', ...rest }: HTMLAttributes<HTMLDivElement
   );
 };
 
-export default SearchHeader;
+export default SearchBar;

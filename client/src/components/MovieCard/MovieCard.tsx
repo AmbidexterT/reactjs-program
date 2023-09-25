@@ -3,7 +3,7 @@ import DeleteConfirmation from 'components/Modals/DeleteConfirmation';
 import { ReactComponent as Dots } from 'assets/icons/dots.svg';
 import { ReactComponent as XIcon } from 'assets/icons/x.svg';
 import Movie from 'types/Movie';
-import MovieFormModal from './Modals/MovieFormModal';
+import MovieFormModal from '../Modals/MovieFormModal';
 
 interface MovieCardProps {
   movie: Movie;
@@ -70,7 +70,8 @@ const MovieCard = ({ movie, onClick }: MovieCardProps) => {
                   <li className="px-4 py-2 text-white hover:bg-primary" onClick={onEditMovieClick}>
                     Edit
                   </li>
-                  <li className="px-4 py-2 text-white hover:bg-primary" onClick={onDeleteMovieClick}>
+                  <li className="px-4 py-2 text-white hover:bg-primary" onClick={onDeleteMovieClick}
+                      data-testid="delete-button">
                     Delete
                   </li>
                 </ul>
