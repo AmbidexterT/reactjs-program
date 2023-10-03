@@ -13,7 +13,6 @@ const SearchBar = ({ className = '', ...rest }: HTMLAttributes<HTMLDivElement>) 
 
   const openAddMovie = () => setIsMovieFormModalOpen(true);
   const closeAddMovie = () => setIsMovieFormModalOpen(false);
-
   return (
     <header className={`flex-col h-96 bg-header py-5 px-16 text-white bg-cover ${className}`} {...rest}>
       <MovieFormModal isOpen={isMovieFormModalOpen} onClose={closeAddMovie} title="Add movie" />

@@ -4,7 +4,6 @@ describe('SearchBar Component', () => {
     beforeEach(() => {
         cy.visit('http://localhost:3000');
 
-
         initialQuery = 'Titanic';
     });
 

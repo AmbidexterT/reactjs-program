@@ -3,7 +3,7 @@ import SearchBar from 'components/SearchBar/SearchBar';
 import Content from 'layout/Content';
 import MovieDetailsHeader from 'layout/MovieDetailsHeader/MovieDetailsHeader';
 import MovieFormModal from 'components/Modals/MovieFormModal';
-import Movie from 'types/Movie';
+import { Movie } from 'types/film.model';
 
 const MoviesPage = () => {
   const [selectedMovie, setSelectedMovie] = useState<Movie | undefined>();

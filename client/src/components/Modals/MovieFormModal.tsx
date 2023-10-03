@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'containers/Modal';
 import MovieForm from 'components/MovieForm/MovieForm';
-import Movie from 'types/Movie';
+import { Movie } from '../../types/film.model';
 
 interface MovieModalProps {
   movie?: Movie;

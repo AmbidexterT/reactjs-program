@@ -10,18 +10,19 @@ const defaultTabClassName =
 export interface GenreListProps {
   genreNames: string[];
   selectedGenre: string;
-  onSelect: (e: string) => void;
+  onGenreChange: (e: string) => void;
+  onSortChange: (e: string) => void;
 }
 
-const GenreList = ({ genreNames, selectedGenre, onSelect }: GenreListProps) => {
+const GenreList = ({ genreNames, selectedGenre, onGenreChange, onSortChange }: GenreListProps) => {
   const sortByValue = 'genres';
 
-  const onSortChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    console.log('sort changed', event)
+  const onSortingChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    onSortChange(event.target.value);
   };
 
   const onFilterClick = (genreName: string) => {
-    onSelect(genreName);
+    onGenreChange(genreName);
   };
 
   return (
@@ -45,7 +46,7 @@ const GenreList = ({ genreNames, selectedGenre, onSelect }: GenreListProps) => {
       <div className="select-box border-bottom white-text">
         <select
           className='white-text'
-          onChange={onSortChange}
+          onChange={onSortingChange}
           defaultValue={sortByValue || 'genres'}
         >
           {sortOptions.map((sortOption, index) => (
