@@ -31,7 +31,7 @@ const Modal = ({ isOpen, children, onClose, close = false, size = 'default', ...
   if (!isOpen) return null;
 
   return (
-    <ModalView onClose={onClose} isOpen={isOpen} close={close} size={size} {...modalProps}>
+    <ModalView onClose={onClose} close={close} size={size} {...modalProps}>
       {children}
     </ModalView>
   );

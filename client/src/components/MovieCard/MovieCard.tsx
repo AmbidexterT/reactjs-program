@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+// @ts-ignore
+import moment from 'moment';
+import useQuery from 'hooks/useQuery';
+import useStateSelector from 'hooks/useStateSelector';
 import DeleteConfirmation from 'components/Modals/DeleteConfirmation';
-import { ReactComponent as Dots } from 'assets/icons/dots.svg';
-import { ReactComponent as XIcon } from 'assets/icons/x.svg';
-import { Movie } from '../../types/film.model';
-import MovieFormModal from '../Modals/MovieFormModal';
+import MovieFormModal from 'components/Modals/MovieFormModal';
+import { deleteMovie } from 'actions/movieActions';
+import { Movie } from 'reducers/movieReducers/types';
+import Dots from 'assets/icons/dots.svg';
+import XIcon from 'assets/icons/x.svg';
+import NotFoundImage from 'assets/images/not_found.png';
 
 interface MovieCardProps {
   movie: Movie;
@@ -11,11 +19,17 @@ interface MovieCardProps {
 }
 
 const MovieCard = ({ movie, onClick }: MovieCardProps) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { currentQuery } = useQuery();
+  const { deleteMovieLoading } = useStateSelector((state) => state.movies);
   const { poster_path, title, release_date, genres } = movie;
   const [isBlurred, setIsBlurred] = useState(false);
   const [hasMoreActionSelected, setHasMoreActionSelected] = useState(false);
   const [isDeletingMovie, setIsDeletingMovie] = useState(false);
   const [editingMovie, setEditingMovie] = useState<Movie | undefined>();
+  const yearsOfTheMovie = moment(release_date).format('YYYY');
+  const isSelectedMovie = currentQuery.get('movie') === movie.id.toString();
 
   const onCardMouseLeave = () => {
     if (hasMoreActionSelected) setHasMoreActionSelected(false);
@@ -24,7 +38,6 @@ const MovieCard = ({ movie, onClick }: MovieCardProps) => {
 
   const onEditMovieClick = (event: React.MouseEvent<HTMLLIElement>) => {
     event.stopPropagation();
-    console.log(movie)
     setEditingMovie(movie);
   };
 
@@ -34,8 +47,9 @@ const MovieCard = ({ movie, onClick }: MovieCardProps) => {
   };
 
   const onDeleteMovieConfirmation = () => {
-    alert(`I will delete movie : ${movie.title}`);
-    setIsDeletingMovie(false);
+    // @ts-ignore
+    dispatch(deleteMovie(movie.id, () => setIsDeletingMovie(false)));
+    if (isSelectedMovie) navigate('/search');
   };
 
   const onMoreActionClose = (event: React.MouseEvent<SVGAElement>) => {
@@ -65,7 +79,7 @@ const MovieCard = ({ movie, onClick }: MovieCardProps) => {
               {hasMoreActionSelected && (
                 <ul className="absolute w-48 right-2 py-1 mt-2 bg-content rounded shadow-modal">
                   <p className="w-full p-1">
-                    <XIcon className="ml-auto mb-1 mr-2 w-3 h-3" onClick={() => onMoreActionClose} />
+                    <XIcon className="ml-auto mb-1 mr-2 w-3 h-3" onClick={onMoreActionClose} />
                   </p>
                   <li className="px-4 py-2 text-white hover:bg-primary" onClick={onEditMovieClick}>
                     Edit
@@ -78,15 +92,15 @@ const MovieCard = ({ movie, onClick }: MovieCardProps) => {
               )}
             </>
           )}
-          <img src={poster_path} alt={title} />
+          <img src={poster_path} alt={title} onError={(event) => (event.currentTarget.src = NotFoundImage)} />
         </div>
         <p className="flex w-full">
           <span className="font-bold">{title}</span>
-          <span className="ml-auto px-2 py-1 text-xs border-2 rounded-lg border-gray-400 border-opacity-50">
-            {release_date}
+          <span className="ml-auto px-2 h-7 py-1 text-xs border-2 rounded-lg border-gray-400 border-opacity-50">
+            {yearsOfTheMovie}
           </span>
         </p>
-        <small>{genres}</small>
+        <small>{genres.join(', ')}</small>
       </div>
       <MovieFormModal
         isOpen={!!editingMovie}
@@ -98,6 +112,7 @@ const MovieCard = ({ movie, onClick }: MovieCardProps) => {
         isOpen={isDeletingMovie}
         title="Delete movie"
         description="Are you sure you want to delete this movie?"
+        isLoading={deleteMovieLoading}
         onConfirm={onDeleteMovieConfirmation}
         onClose={() => setIsDeletingMovie(false)}
       />

@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from 'react';
-import { ReactComponent as ArrowDown } from 'assets/icons/arrowDown.svg';
+import ArrowDown from 'assets/icons/arrowDown.svg';
 
 interface SelectInputProps extends HTMLAttributes<HTMLDivElement> {
   options: string[];

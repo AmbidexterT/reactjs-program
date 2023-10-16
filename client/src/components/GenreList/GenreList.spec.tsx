@@ -6,7 +6,7 @@ import GenreList from './GenreList';
 
 test('renders all genres passed in props', () => {
   const genres = ['Action', 'Adventure', 'Comedy'];
-  const { getByText } = render(<GenreList genreNames={genres} selectedGenre="" onGenreChange={() => {}} onSortChange={() => {}} />);
+  const { getByText } = render(<GenreList />);
 
   genres.forEach((genre) => {
     expect(getByText(genre)).toBeInTheDocument();
@@ -15,9 +15,7 @@ test('renders all genres passed in props', () => {
 
 test('highlights a selected genre passed in props', () => {
   const selectedGenre = 'Action';
-  const { getByText } = render(<GenreList genreNames={['Action', 'Adventure', 'Comedy']}
-                                          selectedGenre={selectedGenre}
-                                          onGenreChange={() => {}} onSortChange={() => {}}/>);
+  const { getByText } = render(<GenreList />);
   const selectedGenreElement = getByText(selectedGenre);
 
   expect(selectedGenreElement).toHaveClass('default-tab border-bottom primary-border primary-text');
@@ -26,10 +24,7 @@ test('highlights a selected genre passed in props', () => {
 
 test('after a click event on a genre button, calls "onChange" callback with correct genre', () => {
   const mockonGenreChange = jest.fn();
-  const mockOnonSortChange = jest.fn();
-  const { getByText } = render(<GenreList genreNames={['Action', 'Adventure', 'Comedy']}
-                                          selectedGenre="" onGenreChange={mockonGenreChange}
-                                          onSortChange={mockOnonSortChange} />);
+  const { getByText } = render(<GenreList />);
   const genreToClick = 'Action';
   const genreElement = getByText(genreToClick);
 

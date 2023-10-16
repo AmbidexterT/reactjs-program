@@ -1,5 +1,5 @@
 import React, { HTMLAttributes, useEffect } from 'react';
-import { ReactComponent as SearchButton } from 'assets/icons/searchButton.svg';
+import SearchButton from 'assets/icons/searchButton.svg';
 import { Movie } from '../../types/film.model';
 
 interface MovieDetailsHeaderProps extends HTMLAttributes<HTMLDivElement> {

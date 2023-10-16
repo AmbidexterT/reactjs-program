@@ -1,10 +1,16 @@
 import React from 'react';
 import './styles/styles.css';
 import './App.css';
-import HomePage from './containers/HomePage/HomePage';
+import { BrowserRouter as Router } from 'react-router-dom';
+import ErrorBoundary from 'containers/ErrorBoundary';
+import AppRoutes from './routes';
 
-function App () {
-  return <HomePage />;
-}
+const App = () => (
+  <ErrorBoundary>
+    <Router>
+      <AppRoutes />
+    </Router>
+  </ErrorBoundary>
+);
 
 export default App;

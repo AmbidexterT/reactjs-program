@@ -1,40 +1,35 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import cx from 'classnames';
-import { sortOptions } from '../../mocks/data';
-import { ReactComponent as ArrowDown } from '../../assets/icons/arrowDown.svg';
+import { genres, sortOptions } from '../../mocks/data';
+import ArrowDown from '../../assets/icons/arrowDown.svg';
 import './GenreList.css';
+import useQuery from '../../hooks/useQuery';
 
 const defaultTabClassName =
   'default-tab border-bottom';
 
-export interface GenreListProps {
-  genreNames: string[];
-  selectedGenre: string;
-  onGenreChange: (e: string) => void;
-  onSortChange: (e: string) => void;
-}
+const GenreList = () => {
+  const { currentQuery, addQuery } = useQuery();
+  const selectedGenre = currentQuery.get('genre');
+  const sortByValue = currentQuery.get('sortBy');
 
-const GenreList = ({ genreNames, selectedGenre, onGenreChange, onSortChange }: GenreListProps) => {
-  const sortByValue = 'genres';
+  const onSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => addQuery('sortBy', event.target.value);
 
-  const onSortingChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    onSortChange(event.target.value);
-  };
-
-  const onFilterClick = (genreName: string) => {
-    onGenreChange(genreName);
+  const onFilterClick = (event: React.MouseEvent<HTMLSpanElement>) => {
+    const selectedFilter = event.currentTarget.innerText[0] + event.currentTarget.innerText.substring(1).toLowerCase();
+    addQuery('genre', selectedFilter);
   };
 
   return (
     <nav className={cx('flex-container')}>
-      {genreNames.map((genreName: string) => (
+      {genres.map((genreName: string) => (
         <span
           key={genreName}
           className={cx(defaultTabClassName, {
             'primary-border primary-text': selectedGenre === genreName,
             'white-text': selectedGenre !== genreName,
           })}
-          onClick={() => onFilterClick(genreName)}
+          onClick={onFilterClick}
         >
                     {genreName}
                 </span>
@@ -46,7 +41,7 @@ const GenreList = ({ genreNames, selectedGenre, onGenreChange, onSortChange }: G
       <div className="select-box border-bottom white-text">
         <select
           className='white-text'
-          onChange={onSortingChange}
+          onChange={onSortChange}
           defaultValue={sortByValue || 'genres'}
         >
           {sortOptions.map((sortOption, index) => (

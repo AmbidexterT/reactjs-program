@@ -79,8 +79,19 @@ const MovieForm = ({ movie, onSubmit, onReset }: MovieFormProps) => (
       </div>
     </div>
     <div className="flex flex-row w-full">
-      <Button title="Reset" className="ml-auto mr-4" variant="outline-primary" size="medium" onClick={onReset} />
-      <Button title={movie ? 'Edit' : 'Submit'} variant="primary" size="medium" type="submit" />
+      <Button
+        buttonTitle="Reset"
+        className="ml-auto mr-4"
+        variant="outline-primary"
+        size="medium"
+        type="reset"
+        onClick={onReset}
+      />
+      <Button
+        buttonTitle={movie ? 'Edit' : 'Submit'}
+        variant="primary"
+        size="medium"
+      />
     </div>
   </form>
 );
