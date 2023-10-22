@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Control, Controller, UseFormGetValues } from 'react-hook-form';
 import ArrowDown from 'assets/icons/arrowDown.svg';
 import { IMovieForm } from 'components/MovieForm/MovieForm';
+import { testingConstants } from '../../utils/Constants';
 import cx from 'classnames';
 
 interface SelectInputProps {
@@ -16,15 +17,15 @@ interface SelectInputProps {
 }
 
 const GenresInput = ({
-                       control,
-                       selectedGenres,
-                       setSelectedGenres,
-                       label,
-                       options,
-                       getValues,
-                       errorMessage,
-                       className,
-                     }: SelectInputProps) => {
+  control,
+  selectedGenres,
+  setSelectedGenres,
+  label,
+  options,
+  getValues,
+  errorMessage,
+  className,
+}: SelectInputProps) => {
   const [isOptionsShown, setIsOptionsShown] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
 
@@ -33,7 +34,7 @@ const GenresInput = ({
   const handleCheck = (genre: string) => {
     const { genres } = getValues();
     const selectedGenres = genres?.includes(genre)
-      ? genres.filter((selectedGenre: string) => selectedGenre !== genre)
+      ? genres.filter((selectedGenre) => selectedGenre !== genre)
       : [...(genres ?? []), genre];
     setSelectedGenres(selectedGenres);
     return selectedGenres;
@@ -70,9 +71,10 @@ const GenresInput = ({
             errorMessage ? 'border-red-500' : 'border-gray80'
           } text-white h-12 py-2 px-4 rounded leading-tight focus:outline-none focus:border-gray-200 cursor-pointer`}
           onClick={toggleGenreSelection}
+          data-testid={testingConstants.genresOptionsInput}
         >
           <span className="flex items-center justify-start select-none">
-            {selectedGenres.length > 0 ? selectedGenres.join(', ') : 'Select genre'}
+            {selectedGenres?.length > 0 ? selectedGenres.join(', ') : 'Select genre'}
           </span>
           <div className="flex ml-auto items-center">
             <ArrowDown
@@ -92,7 +94,7 @@ const GenresInput = ({
                 )}
               >
                 {options.map((genre, index) => (
-                  <li key={index} className="flex flex-row text-white w-full">
+                  <li key={index} className="flex flex-row text-white w-full px-1">
                     <input
                       className="m-auto"
                       type="checkbox"

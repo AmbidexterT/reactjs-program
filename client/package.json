@@ -95,6 +95,9 @@
     "storybook": "^7.4.4",
     "ts-jest": "^29.1.1",
     "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "react-hook-form": "^7.17.4",
+    "yup": "^0.32.11",
+    "@hookform/resolvers": "^2.8.2"
   }
 }

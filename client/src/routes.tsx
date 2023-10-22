@@ -2,15 +2,16 @@ import React from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import ErrorBoundaryView from 'components/ErrorBoundaryView';
 import MoviesPage from 'pages/Movies';
+import { ROUTES } from './utils/Constants';
 
 const AppRoutes = () => (
   <Routes>
     <Route
       path="/"
-      element={<Navigate to="/search" />}
+      element={<Navigate to={ROUTES.search} />}
     />
     <Route
-      path="/search/:searchValue?"
+      path={`${ROUTES.search}/:searchValue?`}
       element={<MoviesPage />}
     />
     <Route

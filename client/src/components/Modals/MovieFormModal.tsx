@@ -1,7 +1,11 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { addMovie, editMovie } from 'actions/movieActions';
+import { Movie } from 'reducers/movieReducers/types';
+import useStateSelector from 'hooks/useStateSelector';
+import MovieForm, { IMovieForm } from 'components/MovieForm/MovieForm';
 import Modal from 'containers/Modal';
-import MovieForm from 'components/MovieForm/MovieForm';
-import { Movie } from '../../types/film.model';
+import moment from 'moment';
 
 interface MovieModalProps {
   movie?: Movie;
@@ -11,18 +15,26 @@ interface MovieModalProps {
 }
 
 const MovieFormModal = ({ movie, isOpen, onClose, title }: MovieModalProps) => {
-  const onSubmit = () => {
-    if (movie) return alert('TODO: I will edit form');
-    return alert('TODO: I will submit form');
-  };
+  const { editMovieLoading, addMovieLoading } = useStateSelector((state) => state.movies);
+  const isLoading = addMovieLoading || editMovieLoading;
+  const dispatch = useDispatch();
 
-  const onReset = () => {
-    alert('TODO: I will reset form');
+  const onSubmit = (data: IMovieForm) => {
+    const convertedData = {
+      ...data,
+      runtime: parseInt(data.runtime),
+      vote_average: parseFloat(data.vote_average) || undefined,
+      release_date: data.release_date || moment().format('YYYY-MM-DD'),
+    };
+
+    return movie // @ts-ignore
+      ? dispatch(editMovie({ ...convertedData, id: movie.id }, onClose)) // @ts-ignore
+      : dispatch(addMovie(convertedData, onClose));
   };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={title} close>
-      <MovieForm movie={movie} onSubmit={onSubmit} onReset={onReset} />
+      <MovieForm movie={movie} isLoading={isLoading} onSubmit={onSubmit} />
     </Modal>
   );
 };

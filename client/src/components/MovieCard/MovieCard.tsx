@@ -12,6 +12,7 @@ import { Movie } from 'reducers/movieReducers/types';
 import Dots from 'assets/icons/dots.svg';
 import XIcon from 'assets/icons/x.svg';
 import NotFoundImage from 'assets/images/not_found.png';
+import { ROUTES, testingConstants } from '../../utils/Constants';
 
 interface MovieCardProps {
   movie: Movie;
@@ -49,7 +50,7 @@ const MovieCard = ({ movie, onClick }: MovieCardProps) => {
   const onDeleteMovieConfirmation = () => {
     // @ts-ignore
     dispatch(deleteMovie(movie.id, () => setIsDeletingMovie(false)));
-    if (isSelectedMovie) navigate('/search');
+    if (isSelectedMovie) navigate(ROUTES.search);
   };
 
   const onMoreActionClose = (event: React.MouseEvent<SVGAElement>) => {
@@ -69,11 +70,16 @@ const MovieCard = ({ movie, onClick }: MovieCardProps) => {
         onMouseEnter={() => setIsBlurred(true)}
         onMouseLeave={onCardMouseLeave}
         onClick={onClick}
+        data-testid={testingConstants.movieCard}
       >
         <div className="relative pb-4">
           {isBlurred && (
             <>
-              <div className="absolute top-2 right-2" onClick={onMoreActionClicked}>
+              <div
+                className="absolute top-2 right-2"
+                onClick={onMoreActionClicked}
+                data-testid={testingConstants.movieItemOptions}
+              >
                 <Dots />
               </div>
               {hasMoreActionSelected && (
@@ -81,11 +87,18 @@ const MovieCard = ({ movie, onClick }: MovieCardProps) => {
                   <p className="w-full p-1">
                     <XIcon className="ml-auto mb-1 mr-2 w-3 h-3" onClick={onMoreActionClose} />
                   </p>
-                  <li className="px-4 py-2 text-white hover:bg-primary" onClick={onEditMovieClick}>
+                  <li
+                    className="px-4 py-2 text-white hover:bg-primary"
+                    onClick={onEditMovieClick}
+                    data-testid={testingConstants.editMovieOption}
+                  >
                     Edit
                   </li>
-                  <li className="px-4 py-2 text-white hover:bg-primary" onClick={onDeleteMovieClick}
-                      data-testid="delete-button">
+                  <li
+                    className="px-4 py-2 text-white hover:bg-primary"
+                    onClick={onDeleteMovieClick}
+                    data-testid={testingConstants.removeMovieOption}
+                  >
                     Delete
                   </li>
                 </ul>
