@@ -38,7 +38,7 @@ const SearchHeader = ({
           onInput={(e) => setSearchValue(e.currentTarget.value)}
           placeholder="What do you want to watch?"
           defaultValue={defaultSearchValue}
-          data-testid={testingConstants.searchHeaderInput}
+          data-testid={testingConstants.searchBarInput}
         />
         <Button
           className="flex ml-2 uppercase"

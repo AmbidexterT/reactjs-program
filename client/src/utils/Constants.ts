@@ -4,7 +4,7 @@ export const ROUTES = {
 
 export enum testingConstants {
   addMovieButton,
-  searchHeaderInput,
+  searchBarInput,
   searchSubmitButton,
   moviesList,
   movieItemOptions,
