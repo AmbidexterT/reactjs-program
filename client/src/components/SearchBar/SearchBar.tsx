@@ -10,7 +10,7 @@ interface SearchHeaderProps extends HTMLAttributes<HTMLDivElement> {
   openAddMovie: () => void;
 }
 
-const SearchHeader = ({
+const SearchBar = ({
                         defaultSearchValue,
                         setSearchValue,
                         onSearchSubmit,
@@ -53,4 +53,4 @@ const SearchHeader = ({
   </header>
 );
 
-export default SearchHeader;
+export default SearchBar;

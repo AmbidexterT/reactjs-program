@@ -1,7 +1,6 @@
-/// <reference types="react-scripts" />
 
 
 declare module "react-dom/client" {
-    var createRoot: any;
-    export {createRoot};
+    var hydrateRoot: any;
+    export {hydrateRoot};
   }
