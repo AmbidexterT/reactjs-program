@@ -1,38 +1,42 @@
 import React, { HTMLAttributes, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AppLogo from 'components/Logo';
 import Button from 'components/Button/Button';
-import MovieFormModal from 'components/Modals/MovieFormModal';
 
-const SearchBar = ({ className = '', ...rest }: HTMLAttributes<HTMLDivElement>) => {
-  const [searchValue, setSearchValue] = useState('');
-  const [isMovieFormModalOpen, setIsMovieFormModalOpen] = useState(false);
+interface SearchHeaderProps extends HTMLAttributes<HTMLDivElement> {
+  defaultSearchValue: string;
+  openAddMovie: () => void;
+}
+
+const SearchBar = ({ defaultSearchValue, openAddMovie, className = '', ...rest }: SearchHeaderProps) => {
+  const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState(defaultSearchValue);
 
   const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (searchValue) alert(`Looking for: ${searchValue}`);
+    return searchValue ? navigate(`/search/${searchValue}`) : navigate('/search');
   };
 
-  const openAddMovie = () => setIsMovieFormModalOpen(true);
-  const closeAddMovie = () => setIsMovieFormModalOpen(false);
   return (
-    <header className={`flex-col h-96 bg-header py-5 px-16 text-white bg-cover ${className}`} {...rest}>
-      <MovieFormModal isOpen={isMovieFormModalOpen} onClose={closeAddMovie} title="Add movie" />
+    <header className={`flex-col h-96 bg-header py-5 px-4 md:px-16 text-white bg-cover ${className}`} {...rest}>
       <div className="flex w-full justify-between items-start">
-        <Button title="+ ADD MOVIE" variant="secondary" size="small" onClick={openAddMovie} />
+        <AppLogo />
+        <Button buttonTitle="+ ADD MOVIE" variant="secondary" size="small" onClick={openAddMovie} />
       </div>
-      <div className="flex-col mx-16 my-11">
-        <label className="flex text-5xl">FIND YOUR MOVIE</label>
-        <form className="flex mt-9">
+      <div className="flex-col m-2 md:mx-16 md:my-11">
+        <label className="flex text-2xl md:text-5xl">FIND YOUR MOVIE</label>
+        <form className="flex mt-2 md:mt-9 w-full">
           <input
-            data-testid={'search-input'}
-            className="flex rounded p-4 text-lg w-full bg-gray80 opacity-60 focus:outline-none"
+            className="flex rounded p-1 md:p-4 text-lg w-full bg-gray80 opacity-60 focus:outline-none"
             name="search"
             onInput={(e) => setSearchValue(e.currentTarget.value)}
             placeholder="What do you want to watch?"
+            defaultValue={defaultSearchValue}
           />
           <Button
             data-testid={'search-button'}
             className="flex ml-2 uppercase"
-            title="Search"
+            buttonTitle="Search"
             variant="primary"
             type="submit"
             size="large"

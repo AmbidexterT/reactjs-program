@@ -1,19 +1,27 @@
 import React from 'react';
 import Modal from 'containers/Modal';
 import Button from 'components/Button/Button';
+import Loader from 'components/Loader';
 
 interface DeleteConfirmationProps {
   isOpen: boolean;
   title: string;
   description: string;
+  isLoading: boolean;
   onConfirm: () => void;
   onClose: () => void;
 }
 
-const DeleteConfirmation = ({ isOpen, title, description, onConfirm, onClose }: DeleteConfirmationProps) => (
+const DeleteConfirmation = ({ isOpen, title, description, isLoading, onConfirm, onClose }: DeleteConfirmationProps) => (
   <Modal isOpen={isOpen} onClose={onClose} title={title} close>
     <span className="font-normal text-lg my-6">{description}</span>
-    <Button className="flex ml-auto mt-6" title="Confirm" variant="primary" size="medium" onClick={onConfirm} />
+    <Button
+      className="flex ml-auto mt-6"
+      buttonTitle={isLoading ? <Loader className="w-6 h-6" /> : 'Confirm'}
+      variant="primary"
+      size="medium"
+      onClick={onConfirm}
+    />
   </Modal>
 );
 

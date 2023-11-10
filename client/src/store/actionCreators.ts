@@ -69,15 +69,19 @@ export function editFilm (film: IFilm) {
   };
 }
 
-export const getFilms = () => {
+export const getFilms = (search: string) => {
   return (dispatch: DispatchType, getState: () => FilmState) => {
     dispatch(filmsStarted());
 
     const sort: SortValues = getState().sort;
     const filter: FilterValues = getState().filter;
 
+    const filterParam = filter.length > 0 ? `&filter=${filter}` : '';
+    const searchParam =
+      search && search.length > 0 ? `&search=${search}&searchBy=title` : '';
+
     fetch(
-      `http://localhost:4000/movies?sortBy=${sort}&filter=${filter}&sortOrder=desc`
+      `http://localhost:4000/movies?sortBy=${sort}${filterParam}&sortOrder=desc${searchParam}`
     )
       .then(response => response.json())
       .then(res => {

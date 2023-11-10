@@ -15,14 +15,12 @@ class ErrorBoundary extends React.Component<Props, State> {
     this.state = { hasError: false };
   }
 
-  redirectToHome = () => (window.location.href = '/');
-
   static getDerivedStateFromError () {
     return { hasError: true };
   }
 
   render () {
-    if (this.state.hasError) return <ErrorBoundaryView onRefresh={this.redirectToHome} />;
+    if (this.state.hasError) return <ErrorBoundaryView title="Something is wrong" />;
 
     return this.props.children;
   }

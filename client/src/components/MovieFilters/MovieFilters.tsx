@@ -1,6 +1,6 @@
 import React, { HTMLAttributes } from 'react';
 import cx from 'classnames';
-import { ReactComponent as ArrowDown } from 'assets/icons/arrowDown.svg';
+import ArrowDown from 'assets/icons/arrowDown.svg';
 import { genres } from '../../mocks/data';
 
 const defaultTabClassName =

@@ -1,29 +1,19 @@
-import React, { useState } from 'react';
-import SearchBar from 'components/SearchBar/SearchBar';
-import Content from 'layout/Content';
-import MovieDetailsHeader from 'layout/MovieDetailsHeader/MovieDetailsHeader';
-import MovieFormModal from 'components/Modals/MovieFormModal';
-import { Movie } from 'types/film.model';
+import React from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import ErrorBoundaryView from 'components/ErrorBoundaryView';
+import MoviesPage from 'pages/Movies';
 
-const MoviesPage = () => {
-  const [selectedMovie, setSelectedMovie] = useState<Movie | undefined>();
-  const [isMovieFormOpen, setIsMovieFormOpen] = useState(false);
-
-  const onSearchIconClick = () => setSelectedMovie(undefined);
-  const onCloseAddMovieForm = () => setIsMovieFormOpen(false);
-
+const HomePage = () => {
   return (
     <>
-      <MovieFormModal isOpen={isMovieFormOpen} onClose={onCloseAddMovieForm} title="Add movie" />
-      {selectedMovie ? (
-        <MovieDetailsHeader movie={selectedMovie} onSearchClick={onSearchIconClick} />
-      ) : (
-        <SearchBar />
-      )}
-      <div className="w-full h-2.5" />
-      <Content onSelectedClick={setSelectedMovie} />
+      <Routes>
+        <Route path="/" element={<Navigate to="/search" />} />
+        <Route path="/search/:searchValue?" element={<MoviesPage />} />
+        <Route path="/404" element={<ErrorBoundaryView title="Page not found" />} />
+        <Route path="*" element={<Navigate to="/404" />} />
+      </Routes>
     </>
   );
 };
 
-export default MoviesPage;
+export default HomePage;

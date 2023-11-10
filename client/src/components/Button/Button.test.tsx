@@ -5,7 +5,7 @@ import Button from './Button';
 describe('Button', () => {
   it('renders the button with the provided title', () => {
     const { getByText } = render(
-      <Button title="Click me" variant="primary" size="medium" />
+      <Button title="Click me" variant="primary" size="medium" buttonTitle={''}/>
     );
 
     expect(getByText('Click me')).toBeInTheDocument();
@@ -13,7 +13,7 @@ describe('Button', () => {
 
   it('applies the specified variant and size classes', () => {
     const { container } = render(
-      <Button title="Primary Large" variant="primary" size="large" />
+      <Button title="Primary Large" variant="primary" size="large" buttonTitle={''}/>
     );
 
     const buttonElement = container.firstChild as HTMLElement;
@@ -24,7 +24,7 @@ describe('Button', () => {
 
   it('adds custom classes from className prop', () => {
     const { container } = render(
-      <Button title="Custom Class" variant="secondary" size="small" className="custom-class" />
+      <Button title="Custom Class" variant="secondary" size="small" className="custom-class" buttonTitle={''}/>
     );
 
     const buttonElement = container.firstChild as HTMLElement;
@@ -35,7 +35,7 @@ describe('Button', () => {
   it('calls the provided onClick function when clicked', () => {
     const onClickMock = jest.fn();
     const { getByText } = render(
-      <Button title="Click me" variant="primary" size="medium" onClick={onClickMock} />
+      <Button title="Click me" variant="primary" size="medium" onClick={onClickMock} buttonTitle={''}/>
     );
 
     const buttonElement = getByText('Click me');

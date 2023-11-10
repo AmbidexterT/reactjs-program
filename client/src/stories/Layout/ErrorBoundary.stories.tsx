@@ -12,5 +12,4 @@ const Template: ComponentStory<typeof ErrorBoundaryView> = (args) => <ErrorBound
 
 export const ErrorBoundary = Template.bind({});
 ErrorBoundary.args = {
-  onRefresh: () => alert('Refresh'),
 };

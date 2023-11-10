@@ -1,4 +1,5 @@
 import React, { HTMLAttributes } from 'react';
+import AppLogo from 'components/Logo';
 
 interface LandingProps extends HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -10,6 +11,9 @@ const Landing = ({ children, className = '', ...restProps }: LandingProps) => (
     {...restProps}
   >
     {children}
+    <div className="flex mt-auto">
+      <AppLogo width={360} height={60} />
+    </div>
   </div>
 );
 

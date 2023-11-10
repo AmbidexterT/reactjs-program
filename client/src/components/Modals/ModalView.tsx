@@ -1,7 +1,5 @@
-import React, { HTMLAttributes, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import FocusTrap from 'focus-trap-react';
-import { ReactComponent as XIcon } from 'assets/icons/x.svg';
+import React, { HTMLAttributes } from 'react';
+import XIcon from 'assets/icons/x.svg';
 import cx from 'classnames';
 
 const absoluteCenter = 'fixed top-1/2 left-1/2 transform -translate-x-2/4 -translate-y-2/4 z-10';
@@ -16,7 +14,6 @@ const modalSizes = {
 export type ModalSize = keyof typeof modalSizes;
 
 interface ModalViewProps extends HTMLAttributes<HTMLDivElement> {
-  isOpen: boolean;
   children: React.ReactNode;
   onClose?: () => void;
   title?: string;
@@ -24,58 +21,39 @@ interface ModalViewProps extends HTMLAttributes<HTMLDivElement> {
   size?: ModalSize;
 }
 
-const Modal = ({
-                 isOpen,
-                 children,
-                 title,
-                 onClose,
-                 close = false,
-                 size = 'default',
-                 className = '',
-                 ...restProps
-               }: ModalViewProps) => {
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
-
-  if (!isOpen) return null;
-
-  return ReactDOM.createPortal(
-    <div>
-      <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"/>
-      <FocusTrap active={isOpen}>
-        <div
-          className={cx(
-            'flex flex-col p-4 bg-content text-white rounded shadow-modal z-10',
-            absoluteCenter,
-            modalSizes[size],
-            className,
-          )}
-          {...restProps}
-        >
-          {close && (
-            <div className="flex items-center w-full">
-              <XIcon className="ml-auto justify-end w-6 h-6 cursor-pointer" onClick={onClose}/>
-            </div>
-          )}
-          <div className="flex flex-col items-center px-14 py-2 w-full h-full">
-            {!!title && (
-              <div className="flex w-full font-light uppercase text-4xl text-white text-left uppercase">{title}</div>
-            )}
-            <div className={cx('flex flex-col w-full h-full', { 'mt-4': !!title })}>{children}</div>
-          </div>
+const ModalView = ({
+                     children,
+                     title,
+                     onClose,
+                     close = false,
+                     size = 'default',
+                     className = '',
+                     ...restProps
+                   }: ModalViewProps) => (
+  <>
+    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" />
+    <div
+      className={cx(
+        'flex flex-col p-4 bg-content text-white rounded shadow-modal z-10',
+        absoluteCenter,
+        modalSizes[size],
+        className,
+      )}
+      {...restProps}
+    >
+      {close && (
+        <div className="flex items-center w-full">
+          <XIcon className="ml-auto justify-end w-6 h-6 cursor-pointer" onClick={onClose} />
         </div>
-      </FocusTrap>
-    </div>,
-    document.getElementById('modal-root')!
-  );
-};
+      )}
+      <div className="flex flex-col items-center px-14 py-2 w-full h-full">
+        {!!title && (
+          <div className="flex w-full font-light uppercase text-4xl text-white text-left uppercase">{title}</div>
+        )}
+        <div className={cx('flex flex-col w-full h-full', { 'mt-4': !!title })}>{children}</div>
+      </div>
+    </div>
+  </>
+);
 
-export default Modal;
+export default ModalView;
