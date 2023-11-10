@@ -26,5 +26,6 @@ module.exports = {
     layout: path.resolve(__dirname, '../src/layout/'),
     styles: path.resolve(__dirname, '../src/styles/'),
     types: path.resolve(__dirname, '../src/types/'),
+    utils: path.resolve(__dirname, '../src/utils/'),
   },
 };

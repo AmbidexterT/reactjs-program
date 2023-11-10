@@ -21,7 +21,7 @@ export interface MoviesState {
   deleteMovieError: string[] | [];
 }
 
-const initialState = {
+export const initialState = {
   data: [],
   movie: null,
   totalAmount: 0,
@@ -39,7 +39,7 @@ const initialState = {
   deleteMovieError: [],
 };
 
-export const moviesReducer: Reducer<MoviesState, MovieActionsTypes> = (state = initialState, action) => {
+const moviesReducer: Reducer<MoviesState, MovieActionsTypes> = (state = initialState, action) => {
   switch (action.type) {
     case MoviesActions.FETCH_MOVIE:
       return { ...state, getMovieLoading: true };
@@ -101,3 +101,5 @@ export const moviesReducer: Reducer<MoviesState, MovieActionsTypes> = (state = i
       return state;
   }
 };
+
+export default moviesReducer;

@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'containers/Modal';
 import Button from 'components/Button/Button';
 import Loader from 'components/Loader';
+import { testingConstants } from '../../utils/Constants';
 
 interface DeleteConfirmationProps {
   isOpen: boolean;
@@ -21,6 +22,7 @@ const DeleteConfirmation = ({ isOpen, title, description, isLoading, onConfirm, 
       variant="primary"
       size="medium"
       onClick={onConfirm}
+      data-testid={testingConstants.confirmRemoveMovie}
     />
   </Modal>
 );

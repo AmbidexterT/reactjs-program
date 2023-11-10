@@ -8,6 +8,8 @@ import SearchBar from 'components/SearchBar/SearchBar';
 import Content from 'layout/Content';
 import MovieDetailsHeader from 'layout/MovieDetailsHeader/MovieDetailsHeader';
 import MovieFormModal from 'components/Modals/MovieFormModal';
+import Footer from 'layout/Footer';
+import { ROUTES } from '../utils/Constants';
 
 interface MoviePageParamsProps {
   searchValue?: string;
@@ -15,13 +17,6 @@ interface MoviePageParamsProps {
 
 const MoviesPage = () => {
   const dispatch = useDispatch();
-  const {
-    totalAmount,
-    getMoviesLoading,
-    data: movies,
-    movie,
-    getMoviesError,
-  } = useStateSelector((state) => state.movies);
   // @ts-ignore
   const { searchValue = '' } = useParams<MoviePageParamsProps>();
   const { currentQuery } = useQuery();
@@ -31,10 +26,25 @@ const MoviesPage = () => {
   const sortByValue = currentQuery.get('sortBy');
   const movieId = currentQuery.get('movie');
   const [isMovieFormOpen, setIsMovieFormOpen] = useState(false);
+  const [searchInputValue, setSearchInputValue] = useState(searchValue);
 
-  const onSearchIconClick = () => navigate('/search');
+  const {
+    totalAmount,
+    getMoviesLoading,
+    data: movies,
+    movie,
+    getMoviesError,
+  } = useStateSelector((state) => state.movies);
+
+  const onSearchIconClick = () => navigate(ROUTES.search);
   const onOpenAddMovieForm = () => setIsMovieFormOpen(true);
   const onCloseAddMovieForm = () => setIsMovieFormOpen(false);
+
+  const onSearchSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    return searchInputValue ? navigate(`${ROUTES.search}/${searchInputValue}`) : navigate(ROUTES.search);
+  };
+
   const onMovieClick = (movieId: string) => {
     navigate({ pathname, search: `?movie=${movieId}` });
     window.scrollTo(0, 0);
@@ -57,7 +67,12 @@ const MoviesPage = () => {
       {movieId && movie ? (
         <MovieDetailsHeader movie={movie} onSearchClick={onSearchIconClick} />
       ) : (
-        <SearchBar openAddMovie={onOpenAddMovieForm} defaultSearchValue={searchValue} />
+        <SearchBar
+          onSearchSubmit={onSearchSubmit}
+          openAddMovie={onOpenAddMovieForm}
+          defaultSearchValue={searchValue}
+          setSearchValue={setSearchInputValue}
+        />
       )}
       <Content
         totalMovies={totalAmount}
@@ -66,6 +81,7 @@ const MoviesPage = () => {
         movies={movies}
         onMovieClick={onMovieClick}
       />
+      <Footer />
     </>
   );
 };
