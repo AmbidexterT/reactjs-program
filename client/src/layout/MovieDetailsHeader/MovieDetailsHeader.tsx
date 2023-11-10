@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, useEffect } from 'react';
 import { ReactComponent as SearchButton } from 'assets/icons/searchButton.svg';
-import Movie from 'types/Movie';
+import { Movie } from '../../types/film.model';
 
 interface MovieDetailsHeaderProps extends HTMLAttributes<HTMLDivElement> {
   onSearchClick: () => void;
@@ -8,8 +8,8 @@ interface MovieDetailsHeaderProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const MovieDetailsHeader = ({ onSearchClick, movie, className = '', ...rest }: MovieDetailsHeaderProps) => {
-  const { imageSource, title, genre, years, description, rating, duration } = movie;
-  const durationInHours = `${(duration / 60).toFixed(0)}h ${(duration % 60).toString()}min`;
+  const { poster_path, title, genres, release_date, overview, vote_average, runtime } = movie;
+  const runtimeInHours = `${(runtime / 60).toFixed(0)}h ${(runtime % 60).toString()}min`;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,7 +24,7 @@ const MovieDetailsHeader = ({ onSearchClick, movie, className = '', ...rest }: M
       </div>
       <div className="flex pt-6">
         <div className="w-1/3">
-          <img alt={title} src={imageSource} />
+          <img alt={title} src={poster_path} />
         </div>
         <div className="w-2/3 px-8">
           <p className="flex font-light">
@@ -33,15 +33,15 @@ const MovieDetailsHeader = ({ onSearchClick, movie, className = '', ...rest }: M
               className="flex ml-8 items-center justify-center p-3 h-14 w-14 rounded-full border-2 border-white
               text-2xl"
             >
-              {rating}
+              {vote_average}
             </span>
           </p>
-          <p className="text-white text-opacity-50">{genre}</p>
+          <p className="text-white text-opacity-50">{genres}</p>
           <p className="py-8 text-primary font-light text-2xl">
-            <span className="mr-8">{years}</span>
-            <span>{durationInHours}</span>
+            <span className="mr-8">{release_date}</span>
+            <span>{runtimeInHours}</span>
           </p>
-          <p className="text-white text-opacity-50">{description}</p>
+          <p className="text-white text-opacity-50">{overview}</p>
         </div>
       </div>
     </header>

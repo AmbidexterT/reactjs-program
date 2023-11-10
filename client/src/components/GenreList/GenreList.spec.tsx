@@ -6,7 +6,7 @@ import GenreList from './GenreList';
 
 test('renders all genres passed in props', () => {
   const genres = ['Action', 'Adventure', 'Comedy'];
-  const { getByText } = render(<GenreList genreNames={genres} selectedGenre="" onSelect={() => {}} />);
+  const { getByText } = render(<GenreList genreNames={genres} selectedGenre="" onGenreChange={() => {}} onSortChange={() => {}} />);
 
   genres.forEach((genre) => {
     expect(getByText(genre)).toBeInTheDocument();
@@ -16,7 +16,8 @@ test('renders all genres passed in props', () => {
 test('highlights a selected genre passed in props', () => {
   const selectedGenre = 'Action';
   const { getByText } = render(<GenreList genreNames={['Action', 'Adventure', 'Comedy']}
-                                          selectedGenre={selectedGenre} onSelect={() => {}} />);
+                                          selectedGenre={selectedGenre}
+                                          onGenreChange={() => {}} onSortChange={() => {}}/>);
   const selectedGenreElement = getByText(selectedGenre);
 
   expect(selectedGenreElement).toHaveClass('default-tab border-bottom primary-border primary-text');
@@ -24,13 +25,15 @@ test('highlights a selected genre passed in props', () => {
 });
 
 test('after a click event on a genre button, calls "onChange" callback with correct genre', () => {
-  const mockOnSelect = jest.fn();
+  const mockonGenreChange = jest.fn();
+  const mockOnonSortChange = jest.fn();
   const { getByText } = render(<GenreList genreNames={['Action', 'Adventure', 'Comedy']}
-                                          selectedGenre="" onSelect={mockOnSelect} />);
+                                          selectedGenre="" onGenreChange={mockonGenreChange}
+                                          onSortChange={mockOnonSortChange} />);
   const genreToClick = 'Action';
   const genreElement = getByText(genreToClick);
 
   fireEvent.click(genreElement);
 
-  expect(mockOnSelect).toHaveBeenCalledWith(genreToClick);
+  expect(mockonGenreChange).toHaveBeenCalledWith(genreToClick);
 });

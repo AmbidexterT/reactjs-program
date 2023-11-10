@@ -2,7 +2,7 @@ import React from 'react';
 import Input from 'components/Input/Input';
 import SelectInput from 'components/SelectInput';
 import Button from 'components/Button/Button';
-import Movie from 'types/Movie';
+import { Movie } from '../../types/film.model';
 import { genres } from '../../mocks/data';
 
 interface MovieFormProps {
@@ -26,7 +26,7 @@ const MovieForm = ({ movie, onSubmit, onReset }: MovieFormProps) => (
         label="Release date"
         type="date"
         placeholder="Select Date"
-        defaultValue={movie?.years}
+        defaultValue={movie?.release_date}
       />
     </div>
     <div className="flex flex-wrap -mx-3 mb-4">
@@ -35,7 +35,7 @@ const MovieForm = ({ movie, onSubmit, onReset }: MovieFormProps) => (
         label="Movie url"
         type="text"
         placeholder="https://"
-        defaultValue={movie?.imageSource}
+        defaultValue={movie?.poster_path}
       />
       <Input
         className="w-full sm:w-1/3 px-3"
@@ -45,7 +45,7 @@ const MovieForm = ({ movie, onSubmit, onReset }: MovieFormProps) => (
         max="10"
         step="0.1"
         placeholder="7.8"
-        defaultValue={movie?.rating}
+        defaultValue={movie?.vote_average}
       />
     </div>
     <div className="flex flex-wrap -mx-3 mb-4">
@@ -53,7 +53,7 @@ const MovieForm = ({ movie, onSubmit, onReset }: MovieFormProps) => (
         className="w-full sm:w-2/3 px-3 mb-6 md:mb-0"
         label="Genre"
         options={genres}
-        defaultValue={movie?.genre}
+        defaultValue={movie?.genres}
       />
       <Input
         className="w-full sm:w-1/3 px-3 mb-6 md:mb-0"
@@ -62,14 +62,14 @@ const MovieForm = ({ movie, onSubmit, onReset }: MovieFormProps) => (
         type="number"
         step="1"
         min="1"
-        defaultValue={movie?.duration}
+        defaultValue={movie?.runtime}
       />
     </div>
     <div className="flex flex-wrap -mx-3 mb-4">
       <div className="w-full px-3 mb-6 md:mb-0">
         <label className="block uppercase tracking-wide text-xs font-bold mb-2 upper-case text-primary">Overview</label>
         <textarea
-          defaultValue={movie?.description}
+          defaultValue={movie?.overview}
           className="appearance-none w-full bg-gray80 border-gray80 text-white border rounded py-2 px-4 mb-3
             leading-tight focus:outline-none focus:border-gray-200 resize-none"
           name="overview"

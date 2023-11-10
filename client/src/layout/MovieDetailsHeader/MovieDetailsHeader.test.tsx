@@ -1,16 +1,17 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import MovieDetailsHeader from './MovieDetailsHeader';
-import Movie from '../../types/Movie';
+import { Movie } from '../../types/film.model';
 
 const mockMovie = {
-  imageSource: 'movie.jpg',
+  id: 1,
+  poster_path: 'movie.jpg',
   title: 'Sample Movie',
-  genre: 'Action',
-  years: 2023,
-  description: 'A sample movie description',
-  rating: 8.5,
-  duration: 150,
+  genres: ['Action'],
+  release_date: '2023',
+  runtime: 150,
+  vote_average: 8.5,
+  overview: 'A sample movie description',
 } as Movie;
 
 describe('MovieDetailsHeader', () => {

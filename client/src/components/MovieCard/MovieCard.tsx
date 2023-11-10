@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DeleteConfirmation from 'components/Modals/DeleteConfirmation';
 import { ReactComponent as Dots } from 'assets/icons/dots.svg';
 import { ReactComponent as XIcon } from 'assets/icons/x.svg';
-import Movie from 'types/Movie';
+import { Movie } from '../../types/film.model';
 import MovieFormModal from '../Modals/MovieFormModal';
 
 interface MovieCardProps {
@@ -11,7 +11,7 @@ interface MovieCardProps {
 }
 
 const MovieCard = ({ movie, onClick }: MovieCardProps) => {
-  const { imageSource, title, years, genre } = movie;
+  const { poster_path, title, release_date, genres } = movie;
   const [isBlurred, setIsBlurred] = useState(false);
   const [hasMoreActionSelected, setHasMoreActionSelected] = useState(false);
   const [isDeletingMovie, setIsDeletingMovie] = useState(false);
@@ -78,15 +78,15 @@ const MovieCard = ({ movie, onClick }: MovieCardProps) => {
               )}
             </>
           )}
-          <img src={imageSource} alt={title} />
+          <img src={poster_path} alt={title} />
         </div>
         <p className="flex w-full">
           <span className="font-bold">{title}</span>
           <span className="ml-auto px-2 py-1 text-xs border-2 rounded-lg border-gray-400 border-opacity-50">
-            {years}
+            {release_date}
           </span>
         </p>
-        <small>{genre}</small>
+        <small>{genres}</small>
       </div>
       <MovieFormModal
         isOpen={!!editingMovie}
