@@ -8,5 +8,7 @@
       "outDir": ".tmp",
       "jsx": "react",
     },
-    "include": ["**/*.ts", "e2e/searchBar.cy.tsx"]
+    "include": ["**/*.ts",
+      "e2e/searchBar.cy.tsx"
+    ]
   }

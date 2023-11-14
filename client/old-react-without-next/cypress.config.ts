@@ -17,7 +17,7 @@ export default defineConfig({
   e2e: {
     supportFile: false,
     setupNodeEvents(on, config) {
-      return require('./cypress/plugins/index.js')(on, config)
+      return require('../cypress/plugins')(on, config)
     },
     baseUrl: 'http://localhost:3000',
   },
