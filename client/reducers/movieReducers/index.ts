@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
-import { MoviesActions } from 'actions/movieActions';
-import { MovieActionsTypes } from 'actions/movieActions/types';
+import { MoviesActions } from '@/actions/movieActions';
+import { MovieActionsTypes } from '@/actions/movieActions/types';
 import { Movie } from './types';
 
 export interface MoviesState {

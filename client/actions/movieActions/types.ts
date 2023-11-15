@@ -1,4 +1,4 @@
-import { Movie, Movies } from 'reducers/movieReducers/types';
+import { Movie, Movies } from '@/reducers/movieReducers/types';
 import { MoviesActions } from '.';
 
 interface FetchMovies {
