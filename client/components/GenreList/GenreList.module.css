@@ -1,0 +1,112 @@
+.border-bottom {
+  border-bottom: 2px solid var(--gray);
+}
+
+.default-tab {
+  padding: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 500;
+  outline: none;
+}
+
+.default-tab:hover {
+  color: var(--primary-color);
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  overflow-x: hidden;
+}
+
+.tab-button {
+  padding: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tab-button:hover {
+  color: var(--primary-color) !important;
+}
+
+.selected-tab {
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+.space-elem {
+  cursor: default;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  border-bottom: 2px solid var(--gray);
+}
+
+.sort-label {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+  white-space: nowrap;
+  letter-spacing: 0.89px;
+  text-transform: uppercase;
+  border-color: rgba(255, 255, 255);
+  padding: 4px;
+  border-bottom: 2px solid var(--gray);
+}
+
+.selectBox {
+  position: relative;
+  cursor: pointer;
+}
+
+.selectBox select {
+  padding: 4px;
+  padding-right: 16px;
+  outline: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  appearance: none;
+  width: auto;
+  background-color: var(--gray-light);
+  border-bottom: 2px solid var(--gray);
+  font-weight: 500;
+  white-space: nowrap;
+  border: none;
+  font-family: 'Montserrat', system-ui;
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  .selectBox select {
+    padding: 20px;
+  }
+
+  .sort-label {
+    padding: 20px;
+  }
+
+  .default-tab {
+    padding: 20px;
+  }
+}
+
+.selectArrowCustom {
+  pointer-events: none;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: -8px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+}
+
+.arrowDown {
+  width: 12px;
+  height: 12px;
+}
